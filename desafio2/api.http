@@ -1,0 +1,10 @@
+POST http://localhost/register HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Wesley Willians"
+}
+
+###
+
+GET http://localhost/search?name=Wesley+Willians
