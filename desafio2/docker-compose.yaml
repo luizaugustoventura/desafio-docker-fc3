@@ -11,6 +11,7 @@ services:
       - proxy_network
     volumes:
       - ./node:/usr/src/app
+      - node_modules:/usr/src/app/node_modules
     #tty: true
     #ports:
     # - "3000:3000"
@@ -41,6 +42,9 @@ services:
     depends_on:
       - app
 
+volumes:
+  node_modules:
+  
 networks:
   proxy_network:
     driver: bridge
