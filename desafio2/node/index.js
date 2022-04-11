@@ -64,6 +64,26 @@ app.get('/search', async (req, res) => {
     }
 })
 
+app.get('/list', async (req, res) => {
+    try {
+        const db = await mysql.createConnection(mysqlConfig)
+        const query = util.promisify(db.query).bind(db)
+
+        const result = await query(`SELECT name FROM people`)
+        const mappedNamesFromResult = result.map(element => element.name)
+
+        db.end()
+
+        res.send(`
+            <h1>Bem-vindo(s)</h1>
+            <h4>${mappedNamesFromResult.join('</br>')}</h4>
+        `)
+    } catch (err) {
+        console.error(err)
+        res.send('<h1>Deu ruim :(</h1>')
+    }
+})
+
 app.listen(3000, async () => {
     const db = await mysql.createConnection(mysqlConfig)
     const query = util.promisify(db.query).bind(db)

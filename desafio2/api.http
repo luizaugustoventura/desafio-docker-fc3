@@ -8,3 +8,7 @@ content-type: application/json
 ###
 
 GET http://localhost/search?name=Wesley+Willians
+
+###
+
+GET http://localhost/list
